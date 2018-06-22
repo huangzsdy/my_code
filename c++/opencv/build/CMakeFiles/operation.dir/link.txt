@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/operation.dir/src/operation.cpp.o  -o ../bin/operation  -L/home/software/local/lib -rdynamic -lopencv_core -lopencv_imgproc -lopencv_highgui -Wl,-rpath,/home/software/local/lib 

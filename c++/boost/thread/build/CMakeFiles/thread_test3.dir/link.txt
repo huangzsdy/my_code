@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/thread_test3.dir/thread_test3.o  -o ../bin/thread_test3  -L/home/huangzesang/share/my_env/boost/lib -rdynamic -lboost_system -lboost_thread -Wl,-rpath,/home/huangzesang/share/my_env/boost/lib 

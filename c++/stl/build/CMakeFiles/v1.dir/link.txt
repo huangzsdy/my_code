@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/v1.dir/src/v1.o  -o ../bin/v1  -L/home/software/local/lib -rdynamic 

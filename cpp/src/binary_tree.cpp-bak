@@ -1,0 +1,215 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+#define MAXSIZE 10
+
+typedef struct CBT {
+	string DATA;
+	struct CBT * left;
+	struct CBT * right;
+}CBTType;
+
+CBTType * initTree(){
+	string input ;
+	CBTType * node = new CBTType;
+	if(node != NULL){
+		cout<<"请输入一串字符串，初始化根节点:"<<endl;
+		cin>>input;
+		node->DATA = input;
+		node->left = node->right = NULL;
+		return node;
+	}
+	else{
+		return NULL;
+	}
+}
+
+CBTType * TreeFindNode(CBTType * treeNode,string data){
+	CBTType * ptr;
+
+	if(treeNode->DATA == data){
+		return treeNode;
+	}
+	else{
+		if(ptr = TreeFindNode(treeNode->left,data)){
+			return ptr;
+		}
+		else if(ptr = TreeFindNode(treeNode->right,data)){
+			return ptr;
+		}
+		else
+			return NULL;
+	}
+}
+
+void AddTreeNode(CBTType * treeNode){
+	CBTType * pnode,*parentNode;
+	
+	string data,choice,parentData;
+	
+	cout<<"请输入父节点DATA"<<endl;
+	cin>>parentData;
+
+	parentNode = TreeFindNode(treeNode,parentData);
+	if(parentNode){
+		cout<<"请输入节点DATA"<<endl;
+		cin>>data;
+		cout<<"请输入节点方向"<<endl;
+		cin>>choice;
+		pnode = new CBTType;
+		pnode->DATA = data;
+		pnode->left = pnode->right = NULL;
+		if(choice == "left"){
+			if(parentNode->left){
+				cout<<"左子树不为空"<<endl;
+				delete pnode;
+			}
+			else
+				parentNode->left = pnode;
+		}
+		else if(choice == "right"){
+			if(parentNode->right){
+				cout<<"右子树不为空"<<endl;
+				delete pnode;
+			}
+			else
+				parentNode->right = pnode;
+		}
+		else{
+			cout<<"invalid choice:"<<choice<<endl;
+			delete pnode;
+		}
+	}
+	else
+		cout<<"找不到父节点 node->DATA == "<<parentData<<endl;
+}
+
+int TreeDepth(CBTType * treeNode){
+	int leftDepth,rightDepth;
+	if(treeNode == NULL){
+		return 0;
+	}
+	else{
+		leftDepth = TreeDepth(treeNode->left);
+		rightDepth = TreeDepth(treeNode->right);
+		int depth = leftDepth > rightDepth ? leftDepth+1 : rightDepth+1;
+		return depth;
+	}
+}
+
+void ClearTree(CBTType * treeNode){
+	if(treeNode){
+		ClearTree(treeNode->left);
+		ClearTree(treeNode->right);
+		delete treeNode;
+		treeNode = NULL;
+	}
+}
+
+void TreeNodeData(CBTType * treeNode){
+	cout<<"节点内容是:"<<treeNode->DATA<<endl;
+}
+
+void LevelTree(CBTType * treeNode,void (*TreeNodeData) (CBTType * p)){
+	CBTType * p;
+	CBTType * queue[MAXSIZE];
+	int head,tail = MAXSIZE - 1;
+	if(treeNode){
+		tail = (tail + 1) % MAXSIZE;
+		queue[tail] = treeNode;
+	}
+	while(head != tail){
+		head = (head + 1)%MAXSIZE;
+		p = queue[head];
+		TreeNodeData(p);
+		if(p->left){
+			tail = (tail + 1)%MAXSIZE;
+			queue[tail] = p->left;
+		}
+		if(p->right){
+			tail = (tail + 1) % MAXSIZE;
+			queue[tail] = p->right;
+		}
+	}
+}
+
+//前序遍历，先节点，再左子树，再右子树
+void DLRTree(CBTType * treeNode,void (*TreeNodeData)(CBTType * p)){
+	if(treeNode){
+		TreeNodeData(treeNode);
+		DLRTree(treeNode->left,TreeNodeData);
+		DLRTree(treeNode->right,TreeNodeData);
+	}
+}
+
+//中序遍历
+void LDRTree(CBTType * treeNode,void (*TreeNodeData)(CBTType * p)){
+	if(treeNode){
+		LDRTree(treeNode->left,TreeNodeData);
+		TreeNodeData(treeNode);
+		LDRTree(treeNode->right,TreeNodeData);
+	}
+}
+
+//后序遍历
+void LRDTree(CBTType * treeNode,void (*TreeNodeData)(CBTType * p)){
+	if(treeNode){
+		LRDTree(treeNode->left,TreeNodeData);
+		LRDTree(treeNode->right,TreeNodeData);
+		TreeNodeData(treeNode);		
+	}
+}
+
+int main(int argc,char *argv[]){
+	CBTType * root = NULL;
+	char input;
+	void (*ptr)(CBTType * p);
+	ptr = TreeNodeData;
+	cout<<"1"<<endl;
+	root = initTree();
+	cout<<"请选择菜单添加二叉树的结点"<<endl;
+	cout<<"0.退出 1.添加二叉树结点"<<endl;
+	while(cin>>input){
+		if(input == '0')
+			break;
+		else if(input == '1')
+			AddTreeNode(root);
+		else
+			cout<<"wrong input!!!"<<endl;
+	}
+	cin.clear();
+	cin.ignore(1024,'\n');
+
+	cout<<"请选择菜单遍历二叉树结点"<<endl;
+	cout<<"0.退出 1.先序遍历 2.中序遍历 3.后序遍历"<<endl;
+
+	do{
+		cin>>input;
+		switch(input){
+			case '0':
+				break;
+			case '1':
+				cout<<"先序遍历:"<<endl;
+				DLRTree(root,ptr);
+				break;
+			case '2':
+				cout<<"中序遍历:"<<endl;
+				LDRTree(root,ptr);
+				break;
+			case '3':
+				cout<<"后序遍历:"<<endl;
+				LRDTree(root,ptr);
+				break;
+			default:
+				cout<<"invalid input"<<endl;
+				break;
+		}
+	}while(input != '0');
+
+	cout<<"二叉树深度:"<<TreeDepth(root);
+	ClearTree(root);
+	root = NULL;
+	return 0;
+}

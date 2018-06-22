@@ -1,0 +1,14 @@
+记录caffe自带工具的使用
+
+# 通过caffe日志，画曲线
+1.训练时将日志保留
+nohup $TOOLS/caffe train \
+  --solver=examples/cifar10/cifar10_quick_solver_lr1.prototxt \
+  --snapshot=examples/cifar10/cifar10_quick_iter_4000.solverstate > cifar10_quick.log &!
+
+2.解析日志
+caffe_root/tools/extra/parse_log.sh path/to/your.log (注意必须是.log结尾)
+
+3.画图，其中 0 代表日志图的类型  0: Test accuracy  vs. Iters ；2: Test loss  vs. Iters 
+caffe_root/tools/extra/plot_training_log.py.example 0 save.png /path/to/your.log
+

@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/doubleLinkList.dir/src/doubleLinkList.o  -o ../bin/doubleLinkList  -L/home/software/local/lib -rdynamic 

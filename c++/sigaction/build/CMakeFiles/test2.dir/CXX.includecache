@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/huangzesang/share/learning/my_code/c++/sigaction/src/test2.cpp
+csignal
+-
+iostream
+-
+unistd.h
+-
+

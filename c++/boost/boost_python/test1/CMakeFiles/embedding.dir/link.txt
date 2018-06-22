@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/embedding.dir/embedding.o  -o embedding  -L/home/huangzesang/share/my_env/boost/lib  -L/home/software/local/lib -rdynamic -lboost_python -lpython2.7 -Wl,-rpath,/home/huangzesang/share/my_env/boost/lib:/home/software/local/lib 

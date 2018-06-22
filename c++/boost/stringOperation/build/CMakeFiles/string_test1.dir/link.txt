@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/string_test1.dir/string_test1.o  -o ../bin/string_test1  -L/home/huangzesang/share/my_env/boost/lib -rdynamic -lboost_regex -lboost_system -lboost_thread -Wl,-rpath,/home/huangzesang/share/my_env/boost/lib 

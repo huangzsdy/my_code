@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/huangzesang/share/learning/my_code/c++/stl/src/map1.cpp
+iostream
+-
+map
+-
+string
+-
+algorithm
+-
+string
+-
+

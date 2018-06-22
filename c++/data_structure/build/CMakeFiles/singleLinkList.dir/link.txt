@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/singleLinkList.dir/src/singleLinkList.o  -o ../bin/singleLinkList  -L/home/software/local/lib -rdynamic 

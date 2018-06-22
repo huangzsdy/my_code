@@ -1,0 +1,115 @@
+#coding:utf-8
+
+from __future__ import absolute_import
+from __future__ import print_function
+from keras.models import Sequential
+from keras.datasets import cifar10
+import keras
+from keras.preprocessing.image import ImageDataGenerator
+from keras.layers.core import Dense,Dropout,Activation,Flatten
+from keras.layers.convolutional import Convolution2D,MaxPooling2D
+from keras.optimizers import SGD,Adadelta,Adagrad
+from keras.utils import np_utils,generic_utils
+
+import matplotlib.pyplot as pyplot
+import numpy as np
+import scipy.io as sio
+import os
+
+batch_size = 32
+num_classes = 10
+epochs = 100
+data_augmentation = True
+num_predictions = 20
+save_dir = os.path.join(os.getcwd(),'saved_models')
+model_name = 'keras_cifar10_trained_model.h5'
+CIFAR10_FOLDER = ''
+
+# (x_train,y_train),(x_test,y_test) = cifar10.load_data()
+
+# print ('x_train shape:',x_train.shape)
+# print (x_train.shape[0],'train samples')
+# print (x_test.shape[0],'test samples')
+
+# y_train = keras.utils.to_categorical(y_train,num_classes)
+# y_test = keras.utils.to_categorical(y_test,num_classes)
+
+model = Sequential()
+model.add(Conv2D(32,(3,3),padding='same',
+			input_shape=x_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(Conv2D(32,(3,3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+
+model.add(Conv2D(64,(3,3),padding='same'))
+model.add(Activation('relu'))
+model.add(Conv2D(64,(3,3)))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+
+
+model.add(Flatten())
+model.add(Dense(512))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes))
+mode.add(Activation('softmax'))
+
+opt = keras.optimizers.rmsprop(lr=1e-4,decay=1e-6)
+
+model.compile(loss='categorical_crossentroy',
+			optimizer=opt,
+			metrics=['accuracy'])
+
+# x_train = x_train.astype('float32')
+# x_test = x_test.astype('float32')
+# x_train /= 255
+# y_test /= 255
+
+if not data_augmentation:
+	print('Not using data augmentation.')
+	model.fit(x_train,y_train,
+		batch_size=batch_size,
+		epochs=epochs,
+		validation_data=(x_test,y_test),
+		shuffle=True)
+else:
+	print('Using real-time data augmentation.')
+	train_datagen = ImageDataGenerator(
+		rescale = 1./255,
+		featurewise_center=False,
+		samplewise_center=False,
+		featurewise_std_normalization=False,
+		samplewise_std_normalization=False,
+		zca_whitening=False,
+		rotation_range=0,
+		width_shift_range=0.1,
+		height_shift_range=0.1,
+		horizontal_flip=True,
+		vertical_flip=False)
+	test_datagen = ImageDataGenerator(rescale=1./255)
+	train_generator = train_datagen.flow_from_directory(
+		CIFAR10_FOLDER + '/png/train',
+		)
+	# datagen.fit(x_train)
+
+	# model.fit_generator(datagen.flow(x_train,y_train,
+	# 	batch_size=batch_size),
+	# 	epochs=epochs,
+	# 	validation_data=(x_test,y_test),
+	# 	workers=4)
+	train_generator = train_datagen.flow_from_directory(CIFAR10_FOLDER + '/png/train',target_size=(32,32),batch_size=batch_size)
+	test_generator = test_generator.
+
+if not os.path.isdir(save_dir):
+	os.makedirs(save_dir)
+model_path = os.path.join(save_dir,model_name)
+model.save(model_path)
+print ('Saved trained model at %s '%model_path)
+
+scores = model.evaluate(x_test,y_test,verbose=1)
+print ('Test loss:',scores[0])
+print ('Test accuracy',scores[1])

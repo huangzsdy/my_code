@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/josephus_problem.dir/src/josephus_problem.o  -o ../bin/josephus_problem  -L/home/software/local/lib -rdynamic 

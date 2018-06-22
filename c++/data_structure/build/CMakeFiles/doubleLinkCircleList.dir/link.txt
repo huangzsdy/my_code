@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/doubleLinkCircleList.dir/src/doubleLinkCircleList.o  -o ../bin/doubleLinkCircleList  -L/home/software/local/lib -rdynamic 

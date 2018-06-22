@@ -1,0 +1,4 @@
+/home/huangzesang/share/learning/my_code/c++/boost/thread/build/CMakeFiles/thread_test1.dir
+/home/huangzesang/share/learning/my_code/c++/boost/thread/build/CMakeFiles/thread_test2.dir
+/home/huangzesang/share/learning/my_code/c++/boost/thread/build/CMakeFiles/thread_test3.dir
+/home/huangzesang/share/learning/my_code/c++/boost/thread/build/CMakeFiles/thread_test4.dir

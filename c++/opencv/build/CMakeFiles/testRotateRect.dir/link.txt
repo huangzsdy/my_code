@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/testRotateRect.dir/src/testRotateRect.cpp.o  -o ../bin/testRotateRect  -L/home/software/local/lib -rdynamic -lopencv_core -lopencv_imgproc -lopencv_highgui -Wl,-rpath,/home/software/local/lib 

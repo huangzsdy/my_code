@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/function1.dir/function1.o  -o ../bin/function1  -L/home/huangzesang/share/my_env/boost/lib  -L/home/software/local/lib -rdynamic 

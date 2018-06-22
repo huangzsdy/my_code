@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/huangzesang/share/learning/my_code/c++/boost/thread/thread_test4.cpp
+iostream
+-
+thread
+-
+mutex
+-
+condition_variable
+-
+

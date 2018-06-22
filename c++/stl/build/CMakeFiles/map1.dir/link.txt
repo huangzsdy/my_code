@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/map1.dir/src/map1.o  -o ../bin/map1  -L/home/software/local/lib -rdynamic 
