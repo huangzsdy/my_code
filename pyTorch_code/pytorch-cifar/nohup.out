@@ -1,0 +1,36 @@
++ source /home/huangzesang/share/env_my.sh
+++ PROTOBUF=/home/huangzesang/share/my_env/protobuf
+++ export PYTHONPATH=/home/huangzesang/share/my_env/anaconda2/lib:/home/huangzesang/share/caffe/python:/home/huangzesang/share/mxnet/python
+++ PYTHONPATH=/home/huangzesang/share/my_env/anaconda2/lib:/home/huangzesang/share/caffe/python:/home/huangzesang/share/mxnet/python
+++ export PYTHONPATH=/home/huangzesang/share/my_env/anaconda2/include:/home/huangzesang/share/my_env/anaconda2/lib:/home/huangzesang/share/caffe/python:/home/huangzesang/share/mxnet/python
+++ PYTHONPATH=/home/huangzesang/share/my_env/anaconda2/include:/home/huangzesang/share/my_env/anaconda2/lib:/home/huangzesang/share/caffe/python:/home/huangzesang/share/mxnet/python
+++ export LD_LIBRARY_PATH=/home/huangzesang/share/my_env/protobuf/lib:/home/software/cudnn/cudnn-v5-cuda-8.0/lib64:/home/software/cuda/8.0/lib64:/home/software/local/lib
+++ LD_LIBRARY_PATH=/home/huangzesang/share/my_env/protobuf/lib:/home/software/cudnn/cudnn-v5-cuda-8.0/lib64:/home/software/cuda/8.0/lib64:/home/software/local/lib
+++ export PATH=/home/huangzesang/share/my_env/protobuf/bin:/home/huangzesang/share/my_env/anaconda2/bin:/home/software/MATLAB/R2016a/bin:/home/zhaoyu/share/software/DrMemory-Linux-1.10.1-3/bin64/:/home/software/cuda/8.0/bin:/home/software/local/bin:/usr/local/bin:/usr/bin:/home/huangzesang/bin:/usr/local/sbin:/usr/sbin
+++ PATH=/home/huangzesang/share/my_env/protobuf/bin:/home/huangzesang/share/my_env/anaconda2/bin:/home/software/MATLAB/R2016a/bin:/home/zhaoyu/share/software/DrMemory-Linux-1.10.1-3/bin64/:/home/software/cuda/8.0/bin:/home/software/local/bin:/usr/local/bin:/usr/bin:/home/huangzesang/bin:/usr/local/sbin:/usr/sbin
+++ export PATH=/home/huangzesang/share/my_env/anaconda2/bin:/home/huangzesang/share/my_env/protobuf/bin:/home/huangzesang/share/my_env/anaconda2/bin:/home/software/MATLAB/R2016a/bin:/home/zhaoyu/share/software/DrMemory-Linux-1.10.1-3/bin64/:/home/software/cuda/8.0/bin:/home/software/local/bin:/usr/local/bin:/usr/bin:/home/huangzesang/bin:/usr/local/sbin:/usr/sbin
+++ PATH=/home/huangzesang/share/my_env/anaconda2/bin:/home/huangzesang/share/my_env/protobuf/bin:/home/huangzesang/share/my_env/anaconda2/bin:/home/software/MATLAB/R2016a/bin:/home/zhaoyu/share/software/DrMemory-Linux-1.10.1-3/bin64/:/home/software/cuda/8.0/bin:/home/software/local/bin:/usr/local/bin:/usr/bin:/home/huangzesang/bin:/usr/local/sbin:/usr/sbin
++ GPUS=0,1
++ LR=1
++ CHECKPOINTS_PATH=../checkpoints
++ TRAIN_BATCH_SIZE=128
++ TEST_BATCH_SIZE=100
++ LOG_INTERVAL=10
++ python -u main3.py --gpus 0,1 --lr 1 --checkpoint_path ../checkpoints --train_batch_size 128 --test_batch_size 100 --log_interval 10
+stty: standard input: Inappropriate ioctl for device
+==> Preparing data..
+load 100 images done
+load 100 images done
+==> Building model..
+
+Epoch: 0
+Train Epoch: 0 [0/100 (0%)]	Loss: 2.295825
+Test set: Average loss: 2.3206, Accuracy: 6/100 (6%)
+
+Saving..
+Traceback (most recent call last):
+  File "main3.py", line 190, in <module>
+    test(epoch)
+  File "main3.py", line 179, in test
+    'net':  net.module if len(gpus) > 1 else net,
+NameError: global name 'gpus' is not defined
